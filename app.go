@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 // App struct
@@ -22,6 +24,21 @@ func (a *App) startup(ctx context.Context) {
 }
 
 // Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+func (a *App) Greet() string {
+	selection, err := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
+		Title: "Select File",
+		Filters: []runtime.FileFilter{
+			{
+				DisplayName: "Images (*.png;*.jpg)",
+				Pattern:     "*.png;*.jpg",
+			}, {
+				DisplayName: "Videos (*.mov;*.mp4)",
+				Pattern:     "*.mov;*.mp4",
+			},
+		},
+	})
+
+	fmt.Println(selection, err)
+
+	return fmt.Sprintf("Hello 123 %s, It's show time!", "name")
 }
