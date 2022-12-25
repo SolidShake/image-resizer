@@ -5,3 +5,7 @@
 export function Greet() {
   return window['go']['main']['App']['Greet']();
 }
+
+export function SavePath() {
+  return window['go']['main']['App']['SavePath']();
+}
